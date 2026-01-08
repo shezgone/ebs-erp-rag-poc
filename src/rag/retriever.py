@@ -21,7 +21,11 @@ class GraphRetriever:
             }}
         }}
         """
+        print(f"\n[DEBUG] 🛠️ Generated SPARQL Query:\n{sparql_query}")
+        
         results = self.graph.query(sparql_query)
+        print(f"[DEBUG] 📊 Graph Query Result: Found {len(results)} rows")
+        
         output = []
         for row in results:
             status = str(row.status) if row.status else "청구 전"
@@ -29,6 +33,8 @@ class GraphRetriever:
                 "date": str(row.orderDate),
                 "status": status
             })
+            print(f"       -> Row: Date={row.orderDate}, Status={status}")
+            
         return output
 
     def query_production_dependencies(self, product_type: str):
@@ -43,11 +49,17 @@ class GraphRetriever:
                    ex:위치 ?wh .
         }}
         """
+        print(f"\n[DEBUG] 🛠️ Generated SPARQL Query:\n{sparql_query_simple}")
         
         results = self.graph.query(sparql_query_simple)
+        print(f"[DEBUG] 📊 Graph Query Result: Found {len(results)} rows")
+        
         output = []
         for row in results:
-             output.append(f"{row.name}: {row.qty}개 (위치: {row.wh.split('/')[-1]})")
+             val_str = f"{row.name}: {row.qty}개 (위치: {row.wh.split('/')[-1]})"
+             output.append(val_str)
+             print(f"       -> Row: {val_str}")
+             
         return output
 
     def get_context_string(self, query_type: str, param: str) -> str:
