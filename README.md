@@ -94,5 +94,8 @@ python visualize_schema.py
 *   **작업지시 (WorkOrder)**: 품목 생산을 위한 상태(`진행중`, `대기중`)
 *   **매입/매출 송장 (Invoice)**: 재무적 흐름 추적
 
+### 온톨로지 시각화 (Ontology Visualization)
+![EBS ERP Ontology Schema](ontology_schema_kr.png)
+
 ---
 Developed for EBS ERP RAG Project PoC.
